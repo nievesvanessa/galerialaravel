@@ -39,3 +39,4 @@ Route::get('/register','Auth\AuthController@register');
 //Route::post('login', ['as' =>'login', 'uses' => 'Auth\AuthController@postLogin']);   
 //Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']); 
 
+//esto es el cambio que hice atte cesar
