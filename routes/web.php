@@ -22,21 +22,20 @@ Route::get('/', function () {
 
 
 Route::get('/para/{nombre}/{edad}','pruebaController@parametro'); 
-//Auth::routes();
-
-
-
-Route::get('/home', 'HomeController@index')->name('home'); 
 
 //login
 Route::get('/login','Auth\AuthController@register'); 
-
+Route::post('/login','Auth\AuthController@register'); 
 //registro
 Route::get('/register','Auth\AuthController@register'); 
-
+Route::post('/register','Auth\AuthController@register'); 
 
 //Route::get('/', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@getLogin']);   
 //Route::post('login', ['as' =>'login', 'uses' => 'Auth\AuthController@postLogin']);   
 //Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']); 
 
 //esto es el cambio que hice atte cesar
+
+//Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home'); 
+//cesarfuentes
