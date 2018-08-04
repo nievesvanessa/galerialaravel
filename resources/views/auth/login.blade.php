@@ -5,10 +5,15 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading" style="display: flex;"> 
+                  Login
+                  <div style="margin: auto;">
+                      @include('mensaje.mensaje')                    
+                  </div>  
+                </div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ url('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -54,8 +59,8 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                <a href="#">google</a>
+                                <a class="btn btn-link" href="#">
                                     Forgot Your Password?
                                 </a>
                             </div>

@@ -26,5 +26,11 @@ class pruebaController extends Controller
     	//return $fo;
     	
     } 
+    public function bienvenida ()
+    {
+
+      return view ('bienvenida');  
+    }
+
 }   
 

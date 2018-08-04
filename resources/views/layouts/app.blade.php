@@ -46,27 +46,36 @@
                             <li><a href="{{ url('login') }}">Login</a></li>
                             <li><a href="{{ url('register') }}">Register</a></li>
                         @else
+                        <li><a href="#">hola5</a></li>
+                        <li><a href="#">hola6</a></li>
+                        <li><a href="#">hola7</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->nombre }}  {{ Auth::user()->apellido }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="{{ url('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+                        
                     </ul>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="#">hola1</a></li>
+                        <li><a href="#">hola2</a></li>
+                        <li><a href="#">hola3</a></li>
+                    </ul>
+                    @endguest
                 </div>
             </div>
         </nav>
@@ -76,5 +85,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+      @stack('scripts')
+
 </body>
 </html>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Input;
 use App\HTTP\Requests;
+use Illuminate\Support\Facades\File;
 
 use App\User;
 use DB;
@@ -66,7 +67,7 @@ class AuthController extends Controller
 
        protected function getLogin()
     {
-        return view('login');
+        return view('auth.login');
     }
 
 
@@ -75,7 +76,7 @@ class AuthController extends Controller
 
         public function postLogin(Request $request)
           {
-         
+        // dd($request);
        
             $this->validate($request, [
             'email' => 'required',
@@ -86,10 +87,10 @@ class AuthController extends Controller
                    if ($this->auth->attempt($credentials, $request->has('remember')))
                          { 
                         
-                               return redirect('uber');
+                               return redirect('bienvenida');
                   
                          }else{
-                             return redirect('/')->with('msjs',"email o contraseña incorrectos");
+                             return redirect('login')->with('msjs',"email o contraseña incorrectos");
                                    
                         } 
            
@@ -99,13 +100,44 @@ class AuthController extends Controller
           public function register(){return view('auth.register'); 
       }
 
+    //post Request $request
+      public function postregister(Request $request){
+          //dd($request);
+       
+
+       $user = new User;
+       $user->nombre=$request->get('nombre');
+       $user->apellido=$request->get('apellido');
+       $user->email=$request->get('email');
+       $user->password=bcrypt($request->get('password'));
+
+       if ($request->hasFile('foto')) {
+                $dir          = 'uploads/';
+                $extension    = strtolower($request->file('foto')->getClientOriginalExtension()); // get image extension
+                $fileName     = str_random() . '.' . $extension; // rename image
+                $request->file('foto')->move($dir, $fileName);
+                $user->foto   = $fileName;
+            }else{
+            return redirect('register')->with('msjs',"No se guardaron los datos");              
+            }
+            $user->save();
+            return redirect('login')->with('msjs',"Se guardaron los datos");              
+      }
+
+
+
+
+
 
 //salir
 
 protected function getLogout()
     {
           $this->auth->logout();
-        return redirect('/');  
+        return redirect('login')->with('msjs',"saliste");              
     }
+
+
+
 
 }
